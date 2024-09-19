@@ -109,11 +109,16 @@ class SecondActivity : AppCompatActivity() {
     private fun evaluateExpression(expr: String): String {
         return try {
             val result = calculate(expr)
-            result.toString()
+            if (result % 1 == 0.0) {
+                result.toInt().toString()
+            } else {
+                result.toString()
+            }
         } catch (e: Exception) {
             "Error"
         }
     }
+
 
     private fun calculate(expr: String): Double {
         val tokens = expr.split(" ").toTypedArray()
